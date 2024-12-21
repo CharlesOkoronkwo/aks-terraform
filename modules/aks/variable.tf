@@ -1,7 +1,7 @@
 variable "resource_group_name" {
   type        = string
   description = "Azure resource group name"
-  default = "aks_rg"
+  default = "aks_rg1"
 }
 variable "location" {
   type        = string

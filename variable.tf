@@ -1,7 +1,7 @@
 variable "resource_group_name" {
   type        = string
   description = "Azure resource group name"
-  default = "aks_rg"
+  default = "aks_rg1"
 }
 variable "location" {
   type        = string
@@ -23,8 +23,8 @@ variable "system_node_count" {
   description = "Number of AKS worker nodes"
   default = 2
 }
-variable "acr_name" {
-  type        = string
-  description = "ACR name"
-  default = "myacr432123"
-}
+# variable "acr_name" {
+#   type        = string
+#   description = "ACR name"
+#   default = "myacr432123"
+# }
