@@ -1,0 +1,35 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  azureServiceConnection: 'CharlesOkoronkwo'
+
+jobs:
+- job: Terraform
+  displayName: 'Terraform Job'
+
+  steps:
+  - checkout: self
+
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: $(azureServiceConnection)
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        # Install Terraform
+        curl -Lo terraform.zip https://releases.hashicorp.com/terraform/1.0.5/terraform_1.0.5_linux_amd64.zip
+        unzip terraform.zip
+        sudo mv terraform /usr/local/bin/
+
+        # Terraform Init
+        terraform init
+
+        # Terraform Plan
+        terraform plan -out=tfplan
+
+        # Terraform Apply
+        terraform apply -auto-approve tfplan
