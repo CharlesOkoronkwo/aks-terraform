@@ -15,6 +15,14 @@ provider "azurerm" {
   subscription_id = "7abee29e-20d0-465e-aa5a-16783d875fc0"
 }
 
+terraform {
+  backend "azurerm" {
+    resource_group_name  = "tfstateResourceGroup"
+    storage_account_name = "akstfstate123"
+    container_name       = "akstfstate"
+    key                  = "terraform.tfstate"
+  }
+}
 provider "kubernetes" {
   host                   = module.aks.kube_config[0].host
   client_certificate     = base64decode(module.aks.kube_config[0].client_certificate)
